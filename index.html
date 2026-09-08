@@ -1,15 +1,588 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ansab Uddin</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <h1>Hi, I'm Ansab 👋</h1>
-    <p>Backend Developer</p>
+        <meta name="description"
+            content="Ansab Uddin — Backend Developer specializing in Node.js, NestJS, Laravel and scalable backend systems.">
 
-</body>
+        <title>Ansab Uddin — Backend Developer</title>
+
+        <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --bg: #09090b;
+        --card: #111113;
+        --border: #27272a;
+        --text: #fafafa;
+        --muted: #a1a1aa;
+        --accent: #60a5fa;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                     Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .container {
+        width: min(1100px, 90%);
+        margin: auto;
+    }
+
+    /* NAVBAR */
+
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(9, 9, 11, 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+    }
+
+    .logo span {
+        color: var(--accent);
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .nav-links a:hover {
+        color: var(--text);
+    }
+
+    /* HERO */
+
+    .hero {
+        min-height: 88vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: rgba(59, 130, 246, 0.12);
+        filter: blur(100px);
+        border-radius: 50%;
+        top: 20%;
+        left: 5%;
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        max-width: 760px;
+    }
+
+    .eyebrow {
+        color: var(--accent);
+        font-size: 14px;
+        margin-bottom: 18px;
+        font-weight: 600;
+    }
+
+    h1 {
+        font-size: clamp(48px, 8vw, 82px);
+        line-height: 1;
+        letter-spacing: -4px;
+        margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+        color: var(--muted);
+    }
+
+    .hero-description {
+        max-width: 650px;
+        color: var(--muted);
+        font-size: 18px;
+        margin-bottom: 32px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 11px 20px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        font-size: 14px;
+        transition: 0.2s ease;
+    }
+
+    .btn-primary {
+        background: var(--text);
+        color: #09090b;
+        border-color: var(--text);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary:hover {
+        border-color: #52525b;
+    }
+
+    /* SECTIONS */
+
+    section {
+        padding: 100px 0;
+    }
+
+    .section-title {
+        font-size: 14px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 18px;
+    }
+
+    .section-heading {
+        font-size: 36px;
+        letter-spacing: -1.5px;
+        margin-bottom: 20px;
+    }
+
+    .section-text {
+        color: var(--muted);
+        max-width: 700px;
+    }
+
+    /* SKILLS */
+
+    .skills {
+        margin-top: 35px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .skill {
+        border: 1px solid var(--border);
+        background: var(--card);
+        padding: 10px 15px;
+        border-radius: 7px;
+        color: #d4d4d8;
+        font-size: 14px;
+    }
+
+    /* PROJECTS */
+
+    .projects {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .project {
+        padding: 25px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--card);
+        transition: 0.25s ease;
+    }
+
+    .project:hover {
+        transform: translateY(-5px);
+        border-color: #3f3f46;
+    }
+
+    .project-number {
+        color: var(--accent);
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .project h3 {
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .project p {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .project-stack {
+        color: #71717a;
+        font-size: 12px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+        border-top: 1px solid var(--border);
+        text-align: center;
+    }
+
+    .contact .section-text {
+        margin: auto;
+    }
+
+    .contact-buttons {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+
+    footer {
+        border-top: 1px solid var(--border);
+        padding: 25px 0;
+        color: #71717a;
+        font-size: 13px;
+    }
+
+    footer .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+        .nav-links {
+            display: none;
+        }
+
+        .hero {
+            min-height: 80vh;
+        }
+
+        h1 {
+            letter-spacing: -2px;
+        }
+
+        .projects {
+            grid-template-columns: 1fr;
+        }
+
+        section {
+            padding: 70px 0;
+        }
+
+        footer .container {
+            flex-direction: column;
+        }
+    }
+</style>
+
+    </head>
+
+    <body>
+
+        <!-- NAVBAR -->
+
+        <nav>
+            <div class="container nav-inner">
+
+                <a href="#" class="logo">
+                    Ansab<span>.</span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <!-- HERO -->
+
+        <main>
+
+            <section class="hero">
+                <div class="container">
+
+                    <div class="hero-content">
+
+                        <div class="eyebrow">
+                            Backend Developer
+                        </div>
+
+                        <h1>
+                            Ansab Uddin<span>.</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            I build scalable APIs, backend systems and
+                            database-driven applications with a focus on
+                            clean architecture, performance and reliability.
+                        </p>
+
+                        <div class="buttons">
+
+                            <a href="#projects" class="btn btn-primary">
+                                View Projects
+                            </a>
+
+                            <a
+                                href="https://github.com/ANSABUDDIN"
+                                target="_blank"
+                                class="btn btn-secondary">
+                                GitHub ↗
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ABOUT -->
+
+            <section id="about">
+                <div class="container">
+
+                    <div class="section-title">
+                        About
+                    </div>
+
+                    <h2 class="section-heading">
+                        Building things that scale.
+                    </h2>
+
+                    <p class="section-text">
+                        I'm a backend-focused developer experienced in building
+                        APIs and business applications. I enjoy working with
+                        Node.js, NestJS, Laravel, databases, caching,
+                        message queues and containerized environments.
+                    </p>
+
+                </div>
+            </section>
+
+            <!-- SKILLS -->
+
+            <section id="skills">
+                <div class="container">
+
+                    <div class="section-title">
+                        Skills
+                    </div>
+
+                    <h2 class="section-heading">
+                        Technologies I work with.
+                    </h2>
+
+                    <div class="skills">
+
+                        <div class="skill">Node.js</div>
+                        <div class="skill">NestJS</div>
+                        <div class="skill">TypeScript</div>
+                        <div class="skill">JavaScript</div>
+                        <div class="skill">Laravel</div>
+                        <div class="skill">PHP</div>
+                        <div class="skill">MySQL</div>
+                        <div class="skill">PostgreSQL</div>
+                        <div class="skill">Redis</div>
+                        <div class="skill">RabbitMQ</div>
+                        <div class="skill">Docker</div>
+                        <div class="skill">Git</div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+
+            <section id="projects">
+                <div class="container">
+
+                    <div class="section-title">
+                        Projects
+                    </div>
+
+                    <h2 class="section-heading">
+                        Selected work.
+                    </h2>
+
+                    <div class="projects">
+
+                        <article class="project">
+
+                            <div class="project-number">
+                                01
+                            </div>
+
+                            <h3>
+                                Event Booking
+                            </h3>
+
+                            <p>
+                                Booking and payment platform with dynamic
+                                pricing, booking management and payment
+                                integrations.
+                            </p>
+
+                            <div class="project-stack">
+                                PHP · WordPress · MySQL · Stripe · PayPal
+                            </div>
+
+                        </article>
+
+                        <article class="project">
+
+                            <div class="project-number">
+                                02
+                            </div>
+
+                            <h3>
+                                User Management API
+                            </h3>
+
+                            <p>
+                                Backend API for users, roles, profiles,
+                                education, experience and task management.
+                            </p>
+
+                            <div class="project-stack">
+                                Laravel · MySQL · REST API
+                            </div>
+
+                        </article>
+
+                        <article class="project">
+
+                            <div class="project-number">
+                                03
+                            </div>
+
+                            <h3>
+                                Backend Systems
+                            </h3>
+
+                            <p>
+                                Production-oriented backend experiments
+                                involving queues, caching, databases and
+                                scalable architectures.
+                            </p>
+
+                            <div class="project-stack">
+                                Node.js · NestJS · Redis · RabbitMQ · Docker
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+
+            <section id="contact" class="contact">
+
+                <div class="container">
+
+                    <div class="section-title">
+                        Contact
+                    </div>
+
+                    <h2 class="section-heading">
+                        Let's build something.
+                    </h2>
+
+                    <p class="section-text">
+                        Have a project, idea or backend problem?
+                        Feel free to reach out.
+                    </p>
+
+                    <div class="contact-buttons">
+
+                        <a
+                            href="https://github.com/ANSABUDDIN"
+                            target="_blank"
+                            class="btn btn-primary">
+                            GitHub ↗
+                        </a>
+
+                        <a
+                            href="mailto:your-email@example.com"
+                            class="btn btn-secondary">
+                            Email
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <div class="container">
+
+                <span>
+                    © 2026 Ansab Uddin
+                </span>
+
+                <span>
+                    Built with HTML & CSS
+                </span>
+
+            </div>
+
+        </footer>
+    </body>
 </html>
